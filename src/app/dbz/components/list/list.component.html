@@ -1,0 +1,35 @@
+<h4>Listado</h4>
+<!-- cualquier atributo de html que conozcamos le podemos decir a angular que lo
+ controle, automaticamente se le pone corchetes y a lo que igualen tiene que ser
+ una expresión de JavaScript, ejemplo: ver linea 12 a 15-->
+<ul class="list-group">
+  <li *ngFor="let character of characterList;
+    let i = index;
+    let isFirst = first;
+    let isLast = last;
+    let isEven = even;"
+    class="list-group-item d-flex justify-content-between align-items-center"
+    [ngClass]="{
+      'list-group-item-dark': isLast,
+      'list-group-item-primary': isEven
+    }">
+
+    <div>
+      <span class="text-primary">{{ i + 1 }}. </span>
+      <span>{{ character.name }} - </span>
+      <strong>Power:</strong>
+      <span>{{ character.power }}</span>
+
+      <span> Es el primero: {{ isFirst }} </span>
+      <span>Es el último: {{ isLast }} </span>
+      <span>Es par: {{ isEven }}</span>
+    </div>
+
+    <!-- <button class="btn btn-danger" (click)="onDeleteCharacter(i)">
+      X
+    </button> -->
+    <button class="btn btn-danger" (click)="onDeleteCharacter(character.id || '')">
+      X
+    </button>
+  </li>
+</ul>
